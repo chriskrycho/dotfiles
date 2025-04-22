@@ -1,9 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "kylef/formulae"
-tap "oven-sh/bun"
-tap "unisonweb/unison"
 # Run your GitHub Actions locally
 brew "act"
 # Static analysis and lint tool, for (ba)sh scripts
@@ -34,8 +31,6 @@ brew "difftastic"
 brew "dprint"
 # More intuitive version of du in rust
 brew "dust"
-# Lean Theorem Prover installer and version manager
-brew "elan-init"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Validating, recursive, caching DNS resolver
@@ -64,10 +59,6 @@ brew "git-delta"
 brew "git-lfs"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c@76"
-# Graph visualization software from AT&T and Bell Labs
-brew "graphviz"
 # Command-line benchmarking tool
 brew "hyperfine"
 # Git-compatible distributed version control system
@@ -110,10 +101,6 @@ brew "watchexec"
 brew "watchman"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
-# Swift version manager
-brew "kylef/formulae/swiftenv"
-# Unison [Language] and Codebase Manager
-brew "unisonweb/unison/unison-language"
 # Command-line interface for 1Password
 cask "1password-cli"
 cask "font-hack"
