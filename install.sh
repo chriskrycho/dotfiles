@@ -16,7 +16,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 
-if [[ ! -f ~/.local/bin/task ]]; then
+if [[ ! -f ~/.local/bin/mise ]]; then
     curl https://mise.run | sh
 fi
 
