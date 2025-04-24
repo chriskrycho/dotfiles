@@ -9,9 +9,7 @@ run = "./scripts/install-homebrew.sh"
 [tasks.install-packages]
 description = "Install packages from Brewfile"
 depends = ["install-homebrew"]
-run = """
-brew bundle install
-"""
+run = "brew bundle install"
 
 [tasks.setup-fish]
 description = "Setup fish as the default shell"
