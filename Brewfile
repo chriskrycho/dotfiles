@@ -19,6 +19,8 @@ brew "aspell"
 brew "bat"
 # Audit Cargo.lock files for crates with security vulnerabilities
 brew "cargo-audit"
+# Binary installation for rust projects
+brew "cargo-binstall"
 # Next-generation test runner for Rust
 brew "cargo-nextest"
 # Get a file from an HTTP, HTTPS or FTP server
