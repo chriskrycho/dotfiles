@@ -1,6 +1,6 @@
 [tasks.setup]
-description = "Install Homebrew and packages from Brewfile"
 depends = ["install-homebrew", "install-packages"]
+description = "Configure a new machine"
 
 [tasks.install-homebrew]
 description = "Install Homebrew if not already installed"
