@@ -1,18 +1,2 @@
-[tasks.setup]
-description = "Configure a new machine"
-depends = ["install-homebrew", "install-packages", "setup-fish"]
-
-[tasks.install-homebrew]
-description = "Install Homebrew if not already installed"
-run = "./scripts/install-homebrew.sh"
-
-[tasks.install-packages]
-description = "Install packages from Brewfile"
-depends = ["install-homebrew"]
-run = "brew bundle install"
-
-[tasks.setup-fish]
-description = "Setup fish as the default shell"
-depends = ["install-packages"]
-run = ["./scripts/use-fish.sh", "./scripts/configure-fish-brew.sh"]
-depends_post = []
+[task_config]
+includes = ["tasks"]
