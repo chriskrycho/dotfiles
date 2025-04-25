@@ -1,6 +1,3 @@
-tap "homebrew/bundle"
-tap "homebrew/core"
-tap "homebrew/services"
 # Run your GitHub Actions locally
 brew "act"
 # Static analysis and lint tool, for (ba)sh scripts
