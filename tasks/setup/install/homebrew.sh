@@ -24,10 +24,10 @@ if ! command -v brew &> /dev/null; then
 
   # Add Homebrew to PATH immediately for this session
   # Avoid masking return values by separating declaration and assignment
-  PATH="$PATH:$(brew --prefix)/bin"
+  PATH="$PATH:$(/home/linuxbrew/.linuxbrew/bin/brew --prefix)/bin"
   export PATH
 
-  echo "Homebrew installed successfully!"
+  brew --version &>/dev/null && echo "Homebrew installed successfully!"
 else
   echo "Homebrew is already installed."
 fi
