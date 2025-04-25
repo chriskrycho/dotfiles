@@ -20,7 +20,9 @@ if [[ ! -f ~/.local/bin/mise ]]; then
     curl https://mise.run | sh
 fi
 
-export PATH="$PATH:$HOME/.local/bin"
+if [[ ":$PATH:" != *":HOME/.local/bin:"* ]]; then
+    export PATH="$PATH:$HOME/.local/bin"
+fi
 
 mise --version
 if [ "$dry_run" = true ]; then
