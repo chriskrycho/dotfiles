@@ -25,8 +25,9 @@ if [[ ":$PATH:" != *":HOME/.local/bin:"* ]]; then
 fi
 
 mise --version
+mise trust .
 if [ "$dry_run" = true ]; then
-    mise run setup --dry-run
+    run setup --dry-run
 else
-    mise run setup
+    mise setup
 fi
