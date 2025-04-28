@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 #MISE description="Configure fish for homebrew (path etc.)"
-#MISE depends=["install:packages"]
+#MISE depends=["setup:install:packages"]
 
-echo "Launching fish shell and configuring Homebrew..."
+echo "Configuring fish for Homebrew..."
 
 # Create fish config directory if it doesn't exist
 mkdir -p ~/.config/fish

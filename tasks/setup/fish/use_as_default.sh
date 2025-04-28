@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# MISE description="Setup fish as the default shell"
-# MISE depends=["install:packages"]
+#MISE description="Setup fish as the default shell"
+#MISE depends=["setup:install:packages"]
 
 if command -v fish &> /dev/null; then
   FISH_PATH=$(which fish)
