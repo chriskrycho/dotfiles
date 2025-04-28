@@ -12,7 +12,7 @@ if command -v fish &> /dev/null; then
   fi
 
   echo "Setting fish as default shell..."
-  chsh -s "$FISH_PATH"
+  sudo chsh "$(id -un)" --shell $FISH_PATH
   echo "Default shell set to fish. Changes will take effect on next login."
 else
   echo "Fish shell not found. Make sure it's installed via your Brewfile."
