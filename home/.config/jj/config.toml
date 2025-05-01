@@ -1,0 +1,74 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[aliases]
+l = ["log", "-r", "@ | ancestors(immutable_heads().., 2) ~ ghp | trunk()"]
+lall = ["log", "-r", "..all() ~ ghp"]
+
+[revset-aliases]
+"immutable_heads()" = "builtin_immutable_heads() | ghp"
+
+ghp = 'ancestors(bookmarks(gh-pages) | remote_bookmarks(gh-pages))'
+integration = 'description("[integration]") | description("[integration merge]")'
+wip = 'description(regex:"^\\[(wip|WIP|todo|TODO)\\]|(wip|WIP|todo|TODO):?")'
+testing = '(description(regex:"^testing:"))'
+
+[template-aliases]
+full = "builtin_log_compact_full_description"
+
+# For the change ID, I never care about anything but the actual shortest ID.
+'format_short_id(id)' = 'id.shortest()'
+
+# For a Git revision, on the other hand, I always want 8 so I can quickly copy
+# it to the clipboard for access in e.g. GitHub.
+'format_short_commit_id(id)' = 'id.shortest(8)'
+
+'label_log_node(content)' = '''
+label("node",
+  coalesce(
+    if(!self, label("elided", content)),
+    if(immutable, label("immutable", content)),
+    if(conflict, label("conflict", content)),
+    if(current_working_copy, label("working_copy", content)),
+    label("normal", content)
+  )
+)
+'''
+
+# jj op log defaults to relative timestamps. To use absolute timestamps,
+# you will need to modify the format_time_range() template alias.
+'format_time_range(time_range)' = 'time_range.start() ++ " - " ++ time_range.end()'
+
+summarize = '''
+if(description, description.first_line(), '') ++ "\n"
+'''
+
+[templates]
+# log = "builtin_log_compact_full_description"
+
+log_node = '''
+label_log_node(
+  coalesce(
+    if(!self, "⇋"),
+    if(current_working_copy, "@"),
+    if(immutable, "◆"),
+    if(conflict, "×"),
+    if(self, if(self.contained_in("wip"), label("wip", "±"))),
+    "○"
+  )
+)
+'''
+
+op_log_node = 'if(current_operation, "@", "◉")'
+log_node_elided = 'label("elided node", "⇋")'
+
+[colors]
+"node" = { bold = true }
+"node elided" = { fg = "bright black" }
+"node working_copy" = { fg = "green" }
+"node immutable" = { fg = "bright cyan" }
+"node conflict" = { fg = "red" }
+"node normal" = { bold = false }
+"node wip" = { fg = "yellow", bold = true }
+
+[git]
+private-commits = 'wip | testing | integration'
