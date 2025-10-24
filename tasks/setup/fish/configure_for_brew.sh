@@ -3,6 +3,15 @@
 #MISE description="Configure fish for homebrew (path etc.)"
 #MISE depends=["setup:install:packages"]
 
+# Source Homebrew environment (each Mise task runs in its own subshell)
+if [[ -f /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+elif [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 echo "Configuring fish for Homebrew..."
 
 # Create fish config directory if it doesn't exist

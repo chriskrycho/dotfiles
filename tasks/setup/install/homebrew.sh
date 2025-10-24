@@ -10,17 +10,27 @@ if ! command -v brew &> /dev/null; then
   if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS
     if [[ $(uname -m) == "arm64" ]]; then
-      echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.bashrc
-      eval "$(/opt/homebrew/bin/brew shellenv)"
+      BREW_SHELLENV='eval "$(/opt/homebrew/bin/brew shellenv)"'
     else
-      echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.bashrc
-      eval "$(/usr/local/bin/brew shellenv)"
+      BREW_SHELLENV='eval "$(/usr/local/bin/brew shellenv)"'
     fi
   else
     # Linux
-    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    BREW_SHELLENV='eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
   fi
+
+  # Add to both bash and zsh configs
+  for rcfile in ~/.bashrc ~/.zshrc; do
+    if [[ -f "$rcfile" ]] || [[ "$rcfile" == ~/.bashrc ]] || [[ "$rcfile" == ~/.zshrc ]]; then
+      if ! grep -q "brew shellenv" "$rcfile" 2>/dev/null; then
+        echo "$BREW_SHELLENV" >> "$rcfile"
+        echo "Added Homebrew to $rcfile"
+      fi
+    fi
+  done
+
+  # Source for current shell
+  eval "$BREW_SHELLENV"
 
   brew --version &>/dev/null && echo "Homebrew installed successfully!"
 else
