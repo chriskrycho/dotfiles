@@ -30,7 +30,7 @@ function fish_prompt --description 'Write out the prompt'
     end
 
     echo ''
-    echo -s (prompt_login) ' ' $cwd_color (prompt_pwd --full-length-dirs=2 --dir-length=1) $normal ' ' $prompt_status
+    echo -s (prompt_login) (fish_jj_prompt) ' ' $cwd_color (prompt_pwd --full-length-dirs=2 --dir-length=1) $normal ' ' $prompt_status
     echo -n -s $status_color $suffix ' ' $normal
 end
 
@@ -60,33 +60,22 @@ end
 # PATH updates
 add_to_path $HOME/.cargo/bin
 
-# Don't attempt to set the shell title!
-function fish_title
-  # intentionally does nothing!
-end
+# # Don't attempt to set the shell title!
+# function fish_title
+#   # intentionally does nothing!
+# end
 
 # GPG config
 # set -gx GPG_TTY (tty)
 
 # Aliases
 alias "real-ls" /bin/ls
-alias ls lsd
+alias ls eza
 alias p pnpm
 
-if test (uname) = "Darwin"
-  set -gx EDITOR "bbedit -w"
-end
-
-if command -v volta &> /dev/null
-  set -gx VOLTA_HOME "$HOME/.volta"
-  set -gx PATH "$VOLTA_HOME/bin" $PATH
-  set -gx VOLTA_FEATURE_PNPM 1
-end
-
 # Mise setup
-~/.local/bin/mise activate fish | source
 if status is-interactive
-  mise activate fish | source
+  ~/.local/bin/mise activate fish | source
 else
   mise activate fish --shims | source
 end
@@ -94,3 +83,7 @@ end
 if test -e ~/.config/op/plugins.sh
     source ~/.config/op/plugins.sh
 end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

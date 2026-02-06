@@ -1,4 +1,16 @@
-"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+#:schema https://jj-vcs.github.io/jj/latest/config-schema.json
+
+[ui]
+default-command = "st"
+editor = "code -w"
+graph.style = "square" # the line shape, not the dot shape
+log-word-wrap = true
+diff-instructions = false
+merge-editor = "vscode"
+
+[user]
+name = "Chris Krycho"
+email = "chris.krycho@vanta.com"
 
 [aliases]
 l = ["log", "-r", "@ | ancestors(immutable_heads().., 2) ~ ghp | trunk()"]
@@ -9,7 +21,7 @@ lall = ["log", "-r", "..all() ~ ghp"]
 
 ghp = 'ancestors(bookmarks(gh-pages) | remote_bookmarks(gh-pages))'
 integration = 'description("[integration]") | description("[integration merge]")'
-wip = 'description(regex:"^\\[(wip|WIP|todo|TODO)\\]|(wip|WIP|todo|TODO):?")'
+wip = 'description(regex:"^\\[(wip|WIP|todo|TODO|spike)\\]|(wip|WIP|todo|TODO|spike):?")'
 testing = '(description(regex:"^testing:"))'
 
 [template-aliases]
