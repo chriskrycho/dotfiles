@@ -46,6 +46,8 @@ brew "mosh"
 brew "pandoc"
 # Modern replacement for ps written in Rust
 brew "procs"
+# Remote editing via BBEdit rmate protocol
+brew "rmate"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Rust toolchain installer
