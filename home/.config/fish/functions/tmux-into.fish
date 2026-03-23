@@ -1,11 +1,10 @@
 function tmux-into
-    switch $argv[1]
-        case cs
-            gh cs ssh -c $argv[2] -- -t "tmux -CC new -A -s $argv[1]"
-        case ona
-            gitpod environment ssh $argv[2] --start -- -t "tmux -CC new -A -s $argv[1]"
-        case '*'
-            echo "Unknown environment: $argv[1]" >&2
-            return 1
+    if test (count $argv) -lt 1
+        echo "Usage: tmux-into <environment-id>" >&2
+        return 1
     end
+
+    gitpod environment ssh $argv[1] --start -- \
+        -R 52698:localhost:52698 \
+        -t "tmux -CC new -A -s gitpod"
 end
