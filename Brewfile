@@ -54,6 +54,8 @@ brew "rmate"
 brew "ripgrep"
 # Rust toolchain installer
 brew "rustup"
+# Token-optimized CLI proxy for Claude Code
+brew "rtk"
 # Intuitive find & replace CLI
 brew "sd"
 # Very fast implementation of tldr in Rust
