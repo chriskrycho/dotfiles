@@ -18,6 +18,8 @@ brew "cargo-nextest"
 brew "curl"
 # Modern diagram scripting language that turns text to diagrams
 brew "d2"
+# Modern replacement for ls
+brew "eza"
 # Diff that understands syntax
 brew "difftastic"
 # More intuitive version of du in rust
@@ -58,6 +60,8 @@ brew "sd"
 brew "tealdeer"
 # Program that allows you to count code, quickly
 brew "tokei"
+# Terminal multiplexer
+brew "tmux"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Execute commands when watched files change
