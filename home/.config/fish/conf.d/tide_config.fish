@@ -3,6 +3,9 @@
 # the right config without having to run `tide configure` interactively.
 # These are universal variables; setting them here is idempotent.
 
+# Ensure vi mode is not active (stale universal variables can enable it).
+set -U fish_key_bindings fish_default_key_bindings
+
 set -U tide_left_prompt_items pwd jj newline character
 set -U tide_right_prompt_items status cmd_duration context jobs time
 
