@@ -29,7 +29,9 @@ function _tide_item_jj
                     )
                 )
             '
-    ) or return
+    )
 
-    test -n "$info" and _tide_print_item jj $info
+    if test -n "$info"
+        _tide_print_item jj "$info"
+    end
 end
