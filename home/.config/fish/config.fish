@@ -59,7 +59,7 @@ alias p pnpm
 if status is-interactive
   ~/.local/bin/mise activate fish | source
 else
-  mise activate fish --shims | source
+  ~/.local/bin/mise activate fish --shims | source
 end
 
 if test -e ~/.config/op/plugins.sh
