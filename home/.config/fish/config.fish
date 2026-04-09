@@ -47,8 +47,16 @@ fish_add_path (brew --prefix rustup)/bin
 # GPG config
 # set -gx GPG_TTY (tty)
 
-# Editor: use BBEdit via rmate reverse-tunnel protocol
-set --export EDITOR "rmate --wait"
+# Editor: use BBEdit locally, VS Code in SSH+vscode terminal, vim over plain SSH
+if test -n "$SSH_CLIENT" -o -n "$SSH_TTY"
+    if test "$TERM_PROGRAM" = vscode
+        set --export EDITOR "code --wait"
+    else
+        set --export EDITOR "vim"
+    end
+else
+    set --export EDITOR "bbedit --wait"
+end
 
 # Aliases
 alias "real-ls" /bin/ls

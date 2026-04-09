@@ -2,7 +2,6 @@
 
 [ui]
 default-command = "st"
-editor = "rmate --wait"
 graph.style = "square" # the line shape, not the dot shape
 log-word-wrap = true
 diff-instructions = false
