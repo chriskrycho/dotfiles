@@ -8,4 +8,5 @@ if ! command -v ona &> /dev/null; then
 fi
 
 # Root-owned .tmp dirs block extension install in Zed remote sessions.
-find ~/.local/share/zed/remote_extensions -user root -exec sudo chown -R vscode:vscode {} + 2>/dev/null
+mkdir -p ~/.local/share/zed/remote_extensions
+find ~/.local/share/zed/remote_extensions -user root -exec sudo chown -R vscode:vscode {} +
