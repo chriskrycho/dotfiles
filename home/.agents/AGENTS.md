@@ -69,3 +69,5 @@ All projects use Jujutsu (`jj`) in colocated git repos. Use `jj` for all version
 - Favor writing intermediate results to files or artifacts that other subagents or the main agent can read.
 - Use specialized subagents to double-check risky changes before applying them, and summarize their verdicts clearly.
 - If a subagent appears to be stuck or looping, stop using it for that task, explain why, and switch to a simpler, more direct approach.
+
+@RTK.md
