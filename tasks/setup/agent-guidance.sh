@@ -55,8 +55,15 @@ link_file() {
     dest_dir="$(dirname "$dest")"
     mkdir -p "$dest_dir"
 
-    if [[ -L "$dest" || ! -e "$dest" ]]; then
-        ln -sf "$src" "$dest"
+    if [[ -L "$dest" ]]; then
+        rm "$dest"
+        ln -s "$src" "$dest"
+        echo "  Linked: $label"
+        return
+    fi
+
+    if [[ ! -e "$dest" ]]; then
+        ln -s "$src" "$dest"
         echo "  Linked: $label"
         return
     fi
