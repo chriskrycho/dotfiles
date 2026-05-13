@@ -8,6 +8,8 @@ brew "actionlint"
 brew "asciinema"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Unprivileged sandboxing tool for Linux
+brew "bubblewrap"
 # Audit Cargo.lock files for crates with security vulnerabilities
 brew "cargo-audit"
 # Binary installation for rust projects
@@ -70,3 +72,5 @@ brew "watchexec"
 brew "watchman"
 # Command-line interface for 1Password
 cask "1password-cli"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
