@@ -31,6 +31,14 @@ pick_diff_tool() {
     fi
 }
 
+is_fish_starter_config() {
+    [[ "$1" == "$HOME/.config/fish/config.fish" ]] &&
+        cmp -s "$1" <(printf '%s\n' \
+            'if status is-interactive' \
+            '    # Commands to run in interactive sessions can go here' \
+            'end')
+}
+
 echo "Symlinking config files from $HOME_SRC to $HOME..."
 
 while IFS= read -r -d '' src; do
@@ -51,17 +59,22 @@ while IFS= read -r -d '' src; do
 
     # Skip regular files that aren't ours — don't stomp user data
     if [[ -e "$dest" ]] && [[ ! -L "$dest" ]]; then
-        if [[ "$FORCE" = false ]]; then
-            echo "  SKIP (exists, not a symlink): $rel" >&2
-            continue
-        fi
+        if is_fish_starter_config "$dest"; then
+            echo "  REPLACE (generated fish starter config): $rel"
+            rm "$dest"
+        else
+            if [[ "$FORCE" = false ]]; then
+                echo "  SKIP (exists, not a symlink): $rel" >&2
+                continue
+            fi
 
-        # --force: show the diff then override
-        echo "  OVERRIDE (was not a symlink): $rel"
-        DIFF_TOOL="$(pick_diff_tool)"
-        echo "  --- diff via $DIFF_TOOL ---"
-        "$DIFF_TOOL" "$dest" "$src" || true
-        echo "  ---"
+            # --force: show the diff then override
+            echo "  OVERRIDE (was not a symlink): $rel"
+            DIFF_TOOL="$(pick_diff_tool)"
+            echo "  --- diff via $DIFF_TOOL ---"
+            "$DIFF_TOOL" "$dest" "$src" || true
+            echo "  ---"
+        fi
     fi
 
     ln -sf "$src" "$dest"

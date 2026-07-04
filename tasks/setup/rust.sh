@@ -3,16 +3,12 @@
 #MISE description="Set up Rust toolchain"
 #MISE depends=["setup:install:packages", "setup:configs"]
 
-# Source Homebrew environment
-if [[ -f /opt/homebrew/bin/brew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [[ -f /usr/local/bin/brew ]]; then
-  eval "$(/usr/local/bin/brew shellenv)"
-elif [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
+# shellcheck source=tasks/setup/lib/homebrew.sh
+source "$MISE_PROJECT_ROOT/tasks/setup/lib/homebrew.sh"
+require_homebrew
 
-export PATH="$(brew --prefix rustup)/bin:$HOME/.cargo/bin:$PATH"
+RUSTUP_PREFIX="$(brew --prefix rustup)"
+export PATH="$RUSTUP_PREFIX/bin:$HOME/.cargo/bin:$PATH"
 
 echo "Updating Rust stable toolchain..."
 rustup update stable
