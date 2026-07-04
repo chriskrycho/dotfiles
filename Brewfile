@@ -8,8 +8,9 @@ brew "actionlint"
 brew "asciinema"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Unprivileged sandboxing tool for Linux
-brew "bubblewrap"
+# Unprivileged sandboxing tool for Linux. Installed specially by setup:install:packages
+# so Tier 3 Homebrew environments can build from source only when needed.
+# brew "bubblewrap"
 # Audit Cargo.lock files for crates with security vulnerabilities
 brew "cargo-audit"
 # Binary installation for rust projects
