@@ -30,28 +30,14 @@ if command -v fish &> /dev/null; then
     exit 0
   fi
 
-  if [[ ! -r /dev/tty ]]; then
-    echo "Fish is installed at $FISH_PATH, but there is no TTY for a login shell prompt."
-    echo "Run this manually when ready: chsh -s \"$FISH_PATH\" \"$(id -un)\""
-    exit 0
+  if ! grep -Fxq "$FISH_PATH" /etc/shells; then
+    echo "Adding fish to /etc/shells..."
+    sudo -n add-shell "$FISH_PATH"
   fi
 
-  read -r -p "Set fish ($FISH_PATH) as your default login shell? [y/N] " REPLY </dev/tty
-  case "$REPLY" in
-    [Yy]|[Yy][Ee][Ss])
-      if ! grep -Fxq "$FISH_PATH" /etc/shells; then
-        echo "Adding fish to /etc/shells..."
-        echo "$FISH_PATH" | sudo tee -a /etc/shells
-      fi
-
-      echo "Setting fish as default shell..."
-      chsh -s "$FISH_PATH" "$(id -un)"
-      echo "Default shell set to fish. Changes will take effect on next login."
-      ;;
-    *)
-      echo "Leaving default shell unchanged."
-      ;;
-  esac
+  echo "Setting fish as default shell..."
+  sudo -n chsh -s "$FISH_PATH" "$(id -un)"
+  echo "Default shell set to fish. Changes will take effect on next login."
 else
   echo "Fish shell not found. Make sure it's installed via your Brewfile."
 fi
