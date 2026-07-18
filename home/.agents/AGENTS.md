@@ -32,6 +32,7 @@ All projects use Jujutsu (`jj`) in colocated git repos. Use `jj` for all version
 - Make conservative implementation choices that match the existing codebase.
 - Do not include secrets, tokens, credentials, or machine-private environment values in generated files, logs, commits, or discussion.
 - Do not plan in terms of people doing migrations--no estimates in weeks, no planning for "alignment" or "shopping it around" or writing RFCs etc.
+- Prefer skills that orchestrate deterministic commands. LLM skills should primarily provide interpretation, decision points, and human approval gates around tested deterministic tooling.
 
 ## Planning and Execution
 
